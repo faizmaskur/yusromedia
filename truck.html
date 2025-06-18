@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasa Truk Cepat - Sewa Truk Mudah & Murah</title>
+    <meta name="description" content="Sewa truk murah dan cepat untuk kebutuhan logistik Anda di Indonesia.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fa;
+        }
+
+        /* Header */
+        header {
+            background-color: #004aad;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .cta-button {
+            background-color: #ffcd00;
+            color: #004aad;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 74, 173, 0.8), rgba(0, 74, 173, 0.8)), url('https://via.placeholder.com/1200x600?text=Truk+Image');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Price Calculator */
+        .calculator {
+            background-color: white;
+            max-width: 600px;
+            margin: -50px auto 0;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .calculator h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #004aad;
+        }
+
+        .calculator select, .calculator input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .calculator button {
+            background-color: #ffcd00;
+            color: #004aad;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .calculator button:hover {
+            background-color: #e6b800;
+        }
+
+        #priceResult {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: #004aad;
+        }
+
+        /* Services Section */
+        .services {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 2rem;
+            color: #004aad;
+            margin-bottom: 2rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .service-card h3 {
+            margin: 0.5rem 0;
+            color: #004aad;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #004aad;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                margin-top: 1rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Jasa Truk Cepat</div>
+        <nav>
+            <a href="#home">Beranda</a>
+            <a href="#services">Layanan</a>
+            <a href="#pricing">Harga</a>
+            <a href="#contact">Kontak</a>
+            <a href="#track">Lacak</a>
+        </nav>
+        <a href="#calculator" class="cta-button">Pesan Sekarang</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Sewa Truk Mudah, Cepat, dan Murah</h1>
+        <p>Kami menyediakan jasa truk terpercaya untuk kebutuhan logistik Anda di seluruh Indonesia.</p>
+    </section>
+
+    <!-- Price Calculator -->
+    <section class="calculator" id="calculator">
+        <h2>Cek Harga Pengiriman</h2>
+        <select id="truckType">
+            <option value="1000000">Truk Box 5 Ton (Rp 1.000.000/hari)</option>
+            <option value="2000000">Truk Tronton (Rp 2.000.000/hari)</option>
+            <option value="3000000">Kontainer (Rp 3.000.000/hari)</option>
+        </select>
+        <input type="text" id="origin" placeholder="Kota Asal (contoh: Jakarta)">
+        <input type="text" id="destination" placeholder="Kota Tujuan (contoh: Surabaya)">
+        <button onclick="calculatePrice()">Cek Harga</button>
+        <div id="priceResult"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Layanan Kami</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <img src="https://via.placeholder.com/250x150?text=Truk+Box" alt="Truk Box">
+                <h3>Truk Box</h3>
+                <p>Kapasitas 5-10 ton, cocok untuk pengiriman barang retail.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://via.placeholder.com/250x150?text=Truk+Tronton" alt="Truk Tronton">
+                <h3>Truk Tronton</h3>
+                <p>Kapasitas hingga 20 ton, ideal untuk logistik besar.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://via.placeholder.com/250x150?text=Kontainer" alt="Kontainer">
+                <h3>Kontainer</h3>
+                <p>Pengiriman antar kota dengan keamanan maksimal.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Jasa Truk Cepat. Hubungi kami: <a href="mailto:info@jasatrukcepat.com">info@jasatrukcepat.com</a> | +62 812-3456-7890</p>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20truk" class="whatsapp" target="_blank">Chat via WhatsApp</a>
+
+    <!-- JavaScript -->
+    <script>
+        function calculatePrice() {
+            const truckType = document.getElementById('truckType').value;
+            const origin = document.getElementById('origin').value;
+            const destination = document.getElementById('destination').value;
+            const resultDiv = document.getElementById('priceResult');
+
+            if (!origin || !destination) {
+                resultDiv.innerHTML = "Mohon isi kota asal dan tujuan.";
+                return;
+            }
+
+            // Simulasi harga (bisa diganti dengan logika backend)
+            const basePrice = parseInt(truckType);
+            const distance = 100; // Dummy distance, ganti dengan API Google Maps untuk jarak nyata
+            const estimatedPrice = basePrice + (distance * 5000); // Rp 5000/km
+            resultDiv.innerHTML = `Estimasi harga: Rp ${estimatedPrice.toLocaleString('id-ID')} untuk ${origin} ke ${destination}`;
+        }
+    </script>
+</body>
+</html>
