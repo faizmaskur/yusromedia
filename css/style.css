@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+header {
+    background-color: #FF6200; /* Oranye utama */
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+nav {
+    background-color: #FF8000; /* Oranye lebih terang */
+    padding: 10px;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+nav ul li {
+    position: relative;
+    margin: 0 15px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    cursor: pointer;
+}
+nav ul li a:hover {
+    background-color: #E65500; /* Oranye lebih gelap untuk hover */
+    border-radius: 5px;
+}
+nav ul li ul {
+    display: none;
+    position: absolute;
+    background-color: #FF8000; /* Oranye untuk submenu */
+    min-width: 150px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+nav ul li ul.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+nav ul li ul li {
+    margin: 0;
+}
+nav ul li ul li a {
+    padding: 10px;
+    color: white;
+}
+nav ul li ul li a:hover {
+    background-color: #E65500; /* Oranye lebih gelap untuk hover submenu */
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+.product-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+}
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+.product-card h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+.product-card p {
+    color: #555;
+}
+.product-card button {
+    background-color: #25D366;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.product-card button:hover {
+    background-color: #1EBE54;
+}
+.category-card {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+.category-card img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
+.category-card a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+.welcome {
+    text-align: center;
+    padding: 20px;
+}
+.container a {
+    color: #25D366;
+    text-decoration: none;
+}
+.container a:hover {
+    text-decoration: underline;
+}
