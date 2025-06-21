@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tebak Angka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            width: 100px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        #score {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tebak Angka (1-100)</h1>
+        <p>Masukkan tebakanmu:</p>
+        <input type="number" id="guessInput" min="1" max="100">
+        <button onclick="checkGuess()">Tebak!</button>
+        <p id="message"></p>
+        <p id="score">Skor: 0</p>
+        <button onclick="restartGame()" style="display:none;" id="restartButton">Main Lagi</button>
+    </div>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 10;
+        let score = 0;
+
+        function checkGuess() {
+            const guessInput = document.getElementById('guessInput');
+            const message = document.getElementById('message');
+            const scoreDisplay = document.getElementById('score');
+            const restartButton = document.getElementById('restartButton');
+            const guess = parseInt(guessInput.value);
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                message.textContent = 'Masukkan angka antara 1 dan 100!';
+                return;
+            }
+
+            attempts--;
+
+            if (guess === randomNumber) {
+                message.textContent = `Selamat! Kamu menebak angka ${randomNumber} dengan benar!`;
+                score += attempts * 10;
+                scoreDisplay.textContent = `Skor: ${score}`;
+                guessInput.disabled = true;
+                restartButton.style.display = 'block';
+            } else if (attempts === 0) {
+                message.textContent = `Game Over! Angka yang benar adalah ${randomNumber}.`;
+                guessInput.disabled = true;
+                restartButton.style.display = 'block';
+            } else {
+                message.textContent = guess > randomNumber ? 'Terlalu tinggi!' : 'Terlalu rendah!';
+                scoreDisplay.textContent = `Sisa percobaan: ${attempts}`;
+            }
+
+            guessInput.value = '';
+            guessInput.focus();
+        }
+
+        function restartGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 10;
+            document.getElementById('guessInput').disabled = false;
+            document.getElementById('guessInput').value = '';
+            document.getElementById('message').textContent = '';
+            document.getElementById('score').textContent = `Skor: ${score}`;
+            document.getElementById('restartButton').style.display = 'none';
+            document.getElementById('guessInput').focus();
+        }
+    </script>
+</body>
+</html>
