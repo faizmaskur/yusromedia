@@ -1,0 +1,35 @@
+-- Tabel Pengguna
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    role TEXT NOT NULL CHECK(role IN ('admin', 'jury', 'mc', 'display'))
+);
+
+-- Tabel Peserta
+CREATE TABLE participants (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    group_name TEXT NOT NULL,
+    group_origin TEXT NOT NULL
+);
+
+-- Tabel Pertanyaan
+CREATE TABLE questions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session INTEGER NOT NULL CHECK(session IN (1, 2, 3)),
+    question_text TEXT NOT NULL,
+    answer_type TEXT NOT NULL CHECK(answer_type IN ('multiple_choice', 'text', 'puzzle')),
+    correct_answer TEXT NOT NULL,
+    options TEXT, -- JSON string untuk pilihan ganda, misalnya ["A. X", "B. Y", "C. Z", "D. W"]
+    hint TEXT -- Petunjuk untuk sesi Tebak Kata
+);
+
+-- Tabel Skor
+CREATE TABLE scores (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    participant_id INTEGER NOT NULL,
+    session INTEGER NOT NULL CHECK(session IN (1, 2, 3)),
+    score INTEGER NOT NULL,
+    FOREIGN KEY (participant_id) REFERENCES participants(id)
+);
