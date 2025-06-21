@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Memory Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            touch-action: manipulation; /* Optimasi untuk sentuhan */
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 90%;
+        }
+        h1 {
+            color: #333;
+            font-size: 1.5em;
+        }
+        #score {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #333;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .card {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.3s;
+            touch-action: manipulation;
+        }
+        .card.flipped, .card.matched {
+            background-color: #fff;
+            border: 2px solid #333;
+        }
+        .card.matched {
+            background-color: #d4edda;
+        }
+        .card.flipped::before, .card.matched::before {
+            content: attr(data-symbol);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 600px) {
+            .board {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                max-width: 100%;
+            }
+            .card {
+                font-size: 1.5em;
+            }
+            h1 {
+                font-size: 1.2em;
+            }
+            button {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Game Memory Card</h1>
+        <p id="score">Pasangan ditemukan: 0 / 8</p>
+        <div class="board" id="board"></div>
+        <button onclick="startGame()">Main Ulang</button>
+    </div>
+
+    <script>
+        const symbols = ['🍎', '🍎', '🍌', '🍌', '🍒', '🍒', '🍇', '🍇', '🍉', '🍉', '🍓', '🍓', '🍑', '🍑', '🍍', '🍍'];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        const totalPairs = symbols.length / 2;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function createBoard() {
+            const board = document.getElementById('board');
+            board.innerHTML = '';
+            const shuffledSymbols = shuffle([...symbols]);
+            shuffledSymbols.forEach((symbol, index) => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.symbol = symbol;
+                card.dataset.index = index;
+                card.addEventListener('click', handleCardClick);
+                card.addEventListener('touchstart', handleCardClick, { passive: true });
+                board.appendChild(card);
+            });
+        }
+
+        function handleCardClick(e) {
+            const card = e.target;
+            if (!card.classList.contains('card') || card.classList.contains('flipped') || card.classList.contains('matched') || flippedCards.length >= 2) {
+                return;
+            }
+
+            card.classList.add('flipped');
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                const [card1, card2] = flippedCards;
+                if (card1.dataset.symbol === card2.dataset.symbol) {
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    matchedPairs++;
+                    document.getElementById('score').textContent = `Pasangan ditemukan: ${matchedPairs} / ${totalPairs}`;
+                    flippedCards = [];
+                    if (matchedPairs === totalPairs) {
+                        setTimeout(() => alert('Selamat! Kamu menyelesaikan game!'), 500);
+                    }
+                } else {
+                    setTimeout(() => {
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                        flippedCards = [];
+                    }, 1000);
+                }
+            }
+        }
+
+        function startGame() {
+            flippedCards = [];
+            matchedPairs = 0;
+            document.getElementById('score').textContent = `Pasangan ditemukan: 0 / ${totalPairs}`;
+            createBoard();
+        }
+
+        // Mulai game pertama kali
+        startGame();
+    </script>
+</body>
+</html>
